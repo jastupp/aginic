@@ -1,0 +1,23 @@
+{
+    "test-results": [
+        { "url": "AURL One..", "state": "FAILED" },
+        { "url": "BURL Two..", "state": "PENDING" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" },
+        { "url": "CURL Three..", "state": "SUCCESS" }
+    ]
+}
