@@ -8,7 +8,7 @@ interface IResultsList {
     }[];
 }
 
-const ResultsList = ({ results }: IResultsList) => {
+const ResultList = ({ results }: IResultsList) => {
 
     return (
         <ul className="list-group">
@@ -19,4 +19,4 @@ const ResultsList = ({ results }: IResultsList) => {
     )
 }
 
-export default ResultsList;
+export default ResultList;

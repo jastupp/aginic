@@ -1,8 +1,8 @@
-import ResultsList from "./ResultsList/ResultsList";
+import ResultList from "./ResultList/ResultList";
 import React, { useEffect, useState } from 'react';
 import { getTestResults } from "../../api/TestResults/TestResultsApi";
 
-const ResultsPage = () => {
+const ResultPage = () => {
 
     const [ results, setResults ] = useState([]);
 
@@ -17,10 +17,10 @@ const ResultsPage = () => {
         <div>
             <h4 className='text-center jumbotron'>The API Test Results</h4>
             <div className='mr-5 ml-5'>
-                <ResultsList results={results}/>
+                <ResultList results={results}/>
             </div>
         </div>
     )
 }
 
-export default ResultsPage;
+export default ResultPage;
