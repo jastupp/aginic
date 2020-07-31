@@ -8,8 +8,10 @@ const ResultPage = () => {
 
     useEffect(() => {
         getTestResults()
-            .then(response => response.json())
-            .then(data => setResults(data));
+            .then(response => response.text())
+            //.then(data => setResults(data))
+            .then(data => console.log("TEXT = ", data))
+            .catch(error => console.log(error));
 
     }, [results.length]);
 

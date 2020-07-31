@@ -6,15 +6,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const exp = require('express');
-
-//const app = express();
-
-//app.get("/abc", (req, res) => {
-//    res.send('Hello');
-//});
-
-//app.listen(4000);
 
 ReactDOM.render(
   <React.StrictMode>
