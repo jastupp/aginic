@@ -1,14 +1,20 @@
-
+import State from "../../components/results/State";
 //const baseUrl = process.env.API_URL + "test-results";
-const baseUrl = "/getTests";
 
-const getTestResults = () => fetch(baseUrl);
+const baseUrl = "/test";
+
+const getResults = () => fetch(baseUrl);
 
 const addTestURL = (url: string) => {
-
-    return url;
+    console.log("URL = ", url);
+    fetch(baseUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({URL: url, state: State.WAITING})
+    });
 }
 
 export {
-    getTestResults
+    getResults,
+    addTestURL
 }

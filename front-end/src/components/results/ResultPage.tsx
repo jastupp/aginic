@@ -1,13 +1,13 @@
 import ResultList from "./ResultList/ResultList";
 import React, { useEffect, useState } from 'react';
-import { getTestResults } from "../../api/TestResults/TestResultsApi";
+import { getResults } from "../../api/TestResults/TestResultsApi";
 
 const ResultPage = () => {
 
     const [ results, setResults ] = useState([]);
 
     useEffect(() => {
-        getTestResults()
+        getResults()
             .then(response => response.text())
             //.then(data => setResults(data))
             .then(data => console.log("TEXT = ", data))

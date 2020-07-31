@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import State from '../results/State';
 import AddTestForm from "./AddTestForm/AddTestForm";
+import { addTestURL } from "../../api/TestResults/TestResultsApi";
 
 interface IEvent {
     target: { value: string },
@@ -11,12 +12,14 @@ const AddTestPage = () => {
 
     //const QUERY = 'INSERT INTO ServerTasks SET ?';
 
-    const [ disabled, setDisabled ] = useState(true);
+    const [ URL, setURL ] = useState('');
 
-    const onChange = (event: IEvent) => setDisabled(event.target.value === '');
+    const onChange = (event: IEvent) => setURL(event.target.value);
 
     const onSubmit = (event: IEvent) => {
         event.preventDefault();
+        console.log("onSumit = ", event.target);
+        addTestURL(URL);
 
         // connection.query(QUERY, {
         //     URL: event.target.value,
@@ -31,7 +34,7 @@ const AddTestPage = () => {
         <div>
             <h4 className={'text-center jumbotron'}>Add a URL to test</h4>
             <div className={'mr-5 ml-5'}>
-                <AddTestForm disable={disabled} onChange={onChange} onSubmit={onSubmit}/>
+                <AddTestForm URL={URL} onChange={onChange} onSubmit={onSubmit}/>
             </div>
         </div>
     );
