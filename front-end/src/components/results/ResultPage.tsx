@@ -7,11 +7,17 @@ const ResultPage = () => {
     const [ results, setResults ] = useState([]);
 
     useEffect(() => {
-        getResults()
-            .then(response => response.text())
-            //.then(data => setResults(data))
-            .then(data => console.log("TEXT = ", data))
-            .catch(error => console.log(error));
+
+        (async () => {
+            const results = await getResults();
+            setResults(await getResults());
+            console.log("Use Effect", results);
+        })();
+        // getResults()
+        //     .then(response => response.json())
+        //     //.then(data => setResults(data))
+        //     .then(data => console.log("TEXT = ", data))
+        //     .catch(error => console.log(error));
 
     }, [results.length]);
 

@@ -3,7 +3,8 @@ import State from "../../components/results/State";
 
 const baseUrl = "/test";
 
-const getResults = () => fetch(baseUrl);
+const getResults = async () => await (await fetch(baseUrl)).json();
+
 
 const addTestURL = (url: string) => {
     console.log("URL = ", url);

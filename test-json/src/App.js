@@ -9,14 +9,12 @@ app.use(express.json());
 
 app.get('/test', async (req, res) => {
     const tests = await getTests();
-    console.log('get /test called ', tests);
+    res.json(tests);
 });
 
 app.post('/test', (req, res) => {
-    console.log('post /test called');
     addTest(req.body);
-    //console.log('Body = ', req.body)
-    res.send("Hello POST");
+    res.status(201).send(req.body);
 });
 
 

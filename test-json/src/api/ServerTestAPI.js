@@ -1,18 +1,24 @@
-const { pool } = require('../mysql/MySQLConnect');
+// const { pool } = require('../mysql/MySQLConnect');
+const { connection } = require('../mysql/MySQLConnect');
 
 const addTest = (data) => {
+    //console.log('DATA = ', data);
     const QUERY = 'INSERT INTO ServerTasks SET ?';
-    pool.query(QUERY, data, (error, result) => {
+    connection.query(QUERY, data, (error, result) => {
         error && console.log(error);
-        console.log(result);
+        //console.log(result);
     });
 }
 
 const getTests = async () => {
-    console.log('in getTests');
+    //console.log('in getTests');
     const QUERY = 'SELECT URL, state from ServerTasks'
-    let results = await pool.query(QUERY);
-    console.log("getTests = ", results);
+    return await new Promise((resolve, reject) => {
+        connection.query(QUERY, (error, data ) => {
+            error && reject(error)
+            error || resolve(JSON.parse(JSON.stringify(data)));
+        });
+    });
 }
 
 module.exports = {
