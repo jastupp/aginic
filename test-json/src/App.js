@@ -2,14 +2,14 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const { addTest } = require('./api/ServerTestAPI');
+const { addTest, getTests } = require('./api/ServerTestAPI');
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/test', (req, res) => {
-    console.log('get /test called');
-    res.send("Hello");
+app.get('/test', async (req, res) => {
+    const tests = await getTests();
+    console.log('get /test called ', tests);
 });
 
 app.post('/test', (req, res) => {
