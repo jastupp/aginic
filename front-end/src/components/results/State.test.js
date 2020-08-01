@@ -15,6 +15,6 @@ describe('Test the State enum', () => {
     });
 
     it('Should have the failed results set', () => {
-        expect(State.FAILED).toBe("FAILED");
+        expect(State.FAILURE).toBe("FAILURE");
     });
 })

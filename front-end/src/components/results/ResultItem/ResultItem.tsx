@@ -12,7 +12,7 @@ const ResultItem = ({URL, status}: IResultItem) => {
     status === State.WAITING && (css += 'list-group-item-info');
     status === State.PENDING && (css += 'list-group-item-warning');
     status === State.SUCCESS && (css += 'list-group-item-success');
-    status === State.FAILED && (css += 'list-group-item-danger');
+    status === State.FAILURE && (css += 'list-group-item-danger');
 
     return <li className={css}>{URL}</li>
 }
