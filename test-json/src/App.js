@@ -1,4 +1,3 @@
-//import { addTest } from './api/ServerTestAPI'
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -12,9 +11,9 @@ app.get('/test', async (req, res) => {
     res.json(tests);
 });
 
-app.post('/test', (req, res) => {
-    addTest(req.body);
-    res.status(201).send(req.body);
+app.post('/test', async (req, res) => {
+    const result = await addTest(req.body);
+    res.sendStatus(result.insertId > 0 ? 201 : 403);
 });
 
 
