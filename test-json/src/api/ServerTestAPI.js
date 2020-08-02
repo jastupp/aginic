@@ -11,7 +11,7 @@ const addTest = async (data) => {
 }
 
 const getTests = async () => {
-    const QUERY = 'SELECT URL, state from ServerTasks'
+    const QUERY = 'SELECT URL, state from ServerTasks order by id desc'
     return await new Promise((resolve, reject) => {
         pool.query(QUERY, (error, data) => {
             error && reject(error)

@@ -1,49 +1,53 @@
 const { pool } = require('./mysql/MySQLConnect');
 const State = require('./mysql/State');
+const { pendingTo, waitingToPending, minWaiting } = require('./mysql/Queries');
+const axios = require('axios');
 
-
-const main = () => {
-    //const available = check();
-    //while()
+const main = async () => {
+    let row = await minWaiting();
+    while (row) {
+        runJob(row);
+        row = await minWaiting();
+    }
+    setTimeout(main, 30000);
 }
 
-const query = async (query, connection, params = []) =>
-    await new Promise((resolve, reject) => {
-        connection.query(query, params, (error, result) => {
-            error && reject(error);
-            error || resolve(JSON.parse(JSON.stringify(result)));
-        });
-    });
+const checkURL = async (url) => {
+    let tries = 3;
+    let success = false;
+    while (tries-- > 0 && !success) {
+        try {
+            const resp = await axios.get(`http://${url}`);
+            success = success || resp.status === 200;
+        } catch {}
+    }
+    console.log("Check URL = ", success);
+    return success;
+}
 
-const checkURL = (url) => false;
+const runJob = async (row) => {
 
-const runJob = async () => {
-    const connection = pool.getConnection((error, connection) => {
+    pool.getConnection((error, connection) => {
         connection.beginTransaction(async (error) => {
-            try {
-                const minQ = `select id, URL from ServerTasks
-                                where id = (select min(id) from ServerTasks)`;
-                const minRow = (await query(minQ, connection))[0];
-                console.log(minRow);
-                    //.catch(error => console.log("Error", error));
-                //console.log("Min = ", min);
-
-                const updateStateQ = 'update ServerTasks set state = ? where id = ?';
-                let updateResult = await query(updateStateQ, connection, [State.PENDING, minRow.id]);
-                console.log(updateResult);
-
-                if(updateResult.affectedRows === 1) {
-                    const state = checkURL(minRow.URL) ? State.SUCCESS : State.FAILURE;
-                    updateResult = await query(updateStateQ, connection, [state, minRow.id]);
-                    updateResult.affectedRows === 1 && connection.commit();
+            if (!error) {
+                try {
+                    //let row = await minWaiting();
+                    if (row && await waitingToPending(connection, [row.id])) {
+                        const state = await checkURL(row.URL) ? State.SUCCESS : State.FAILURE;
+                        result = await pendingTo(connection, [row.id, state]);
+                        result ? connection.commit() : connection.rollback();
+                    } else {
+                        connection.rollback();
+                    }
+                } catch (error) {
+                    connection.rollback();
                 }
-
-            } catch(error) {
-                console.log("Catch block error", error);
             }
-
-        })
+        });
+        connection.release();
     });
 };
 
-runJob();
+
+main();
+//console.log(async () => await checkURL("http://google.com"));
