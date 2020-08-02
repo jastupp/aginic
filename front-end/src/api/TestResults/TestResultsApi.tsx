@@ -3,9 +3,16 @@ import State from "../../components/results/State";
 
 const baseUrl = "/test";
 
+/**
+ * Get the test results from the rest server
+ */
 const getResults = async () => await (await fetch(baseUrl)).json();
 
-
+/**
+ * Add a test URL
+ *
+ * @param url
+ */
 const addTestURL = (url: string) => {
     console.log("URL = ", url);
     fetch(baseUrl, {

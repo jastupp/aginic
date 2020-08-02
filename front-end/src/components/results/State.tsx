@@ -1,4 +1,6 @@
-
+/**
+ * The state for results
+ */
 const State = {
     WAITING: 'WAITING',
     PENDING: 'PENDING',

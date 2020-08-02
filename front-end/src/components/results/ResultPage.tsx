@@ -2,23 +2,24 @@ import ResultList from "./ResultList/ResultList";
 import React, { useEffect, useState } from 'react';
 import { getResults } from "../../api/TestResults/TestResultsApi";
 
+/**
+ * The resultPage component
+ */
 const ResultPage = () => {
 
+    // set the results in state
     const [ results, setResults ] = useState([]);
 
+    /**
+     * Called when the component is rendered
+     */
     useEffect(() => {
-
+        // set the results into state
         (async () => {
             const results = await getResults();
             setResults(await getResults());
             console.log("Use Effect", results);
         })();
-        // getResults()
-        //     .then(response => response.json())
-        //     //.then(data => setResults(data))
-        //     .then(data => console.log("TEXT = ", data))
-        //     .catch(error => console.log(error));
-
     }, [results.length]);
 
     return (

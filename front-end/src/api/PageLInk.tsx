@@ -1,3 +1,6 @@
+/**
+ * Enum for the pages
+ */
 const PageLink = {
     HOME: "/",
     TESTURL: "/testurl",

@@ -1,6 +1,9 @@
 import React from 'react';
 import ResultItem from "../ResultItem/ResultItem";
 
+/**
+ * The Interface for the ResultList
+ */
 interface IResultsList {
     results: {
         URL: string,
@@ -8,15 +11,18 @@ interface IResultsList {
     }[];
 }
 
-const ResultList = ({ results }: IResultsList) => {
+/**
+ * The resultList component
+ *
+ * @param results - the results to display
+ */
+const ResultList = ({ results }: IResultsList) => (
+    <ul className="list-group">
+        {results.map((data, index) => (
+            <ResultItem key={index} URL={data.URL} status={data.state} />
+        ))}
+    </ul>
+);
 
-    return (
-        <ul className="list-group">
-            {results.map((data, index) => (
-                <ResultItem key={index} URL={data.URL} status={data.state} />
-            ))}
-        </ul>
-    )
-}
 
 export default ResultList;

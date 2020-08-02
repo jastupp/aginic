@@ -15,15 +15,5 @@ describe('Testing the ResultPage component', () => {
         const wrapper = renderResultPage();
 
         expect(wrapper.find("h4").length).toBe(1);
-        //expect(wrapper.find("ul").hasClass("list-group")).toBeTruthy();
-       // expect(wrapper.find("ul").children().length).toBe(0);
     });
-
-    // it("renders the list with children", () => {
-    //     const wrapper = renderResultList({
-    //         results: [{URL: "", state: State.SUCCESS}]
-    //     });
-    //
-    //     expect(wrapper.find("ul").children().length).toBe(1);
-    // });
 });

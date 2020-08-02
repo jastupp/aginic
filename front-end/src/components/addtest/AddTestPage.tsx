@@ -1,35 +1,43 @@
 import React, { useState } from 'react';
-import State from '../results/State';
 import AddTestForm from "./AddTestForm/AddTestForm";
 import { addTestURL } from "../../api/TestResults/TestResultsApi";
 
+/**
+ * Interface for the event
+ */
 interface IEvent {
     target: { value: string },
     preventDefault: () => void
 }
 
+/**
+ * The AddTest page component
+ */
 const AddTestPage = () => {
 
-    //const QUERY = 'INSERT INTO ServerTasks SET ?';
-
+    // Store the url in state
     const [ URL, setURL ] = useState('');
 
+    /**
+     * Called when the URL is changed
+     *
+     * @param event
+     */
     const onChange = (event: IEvent) => setURL(event.target.value);
 
+    /**
+     * Called when the form is submitted
+     *
+     * @param event
+     */
     const onSubmit = (event: IEvent) => {
         event.preventDefault();
-        console.log("onSumit = ", event.target);
         addTestURL(URL);
-
-        // connection.query(QUERY, {
-        //     URL: event.target.value,
-        //     state: State.WAITING
-        // }, (error: any, results: any) => {
-        //     console.log("Error = ", error);
-        //     console.log("Results = ", results);
-        // })
     }
 
+    /**
+     * Render the component
+     */
     return (
         <div>
             <h4 className={'text-center jumbotron'}>Add a URL to test</h4>

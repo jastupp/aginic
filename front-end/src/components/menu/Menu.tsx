@@ -2,6 +2,9 @@ import React from 'react';
 import PageLink from "../../api/PageLInk";
 import { Nav, Navbar } from 'react-bootstrap';
 
+/**
+ * The Menu component
+ */
 const Menu = () => (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href={PageLink.HOME}>Server Checker</Navbar.Brand>

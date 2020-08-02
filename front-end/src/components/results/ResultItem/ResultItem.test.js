@@ -51,7 +51,7 @@ describe('Testing the ResultItem component', () => {
     });
 
     it("renders the correct class for failure", () => {
-        const wrapper = renderResultItem({status: State.FAILED});
+        const wrapper = renderResultItem({status: State.FAILURE});
 
         expect(wrapper.find('li').hasClass("list-group-item")).toBeTruthy();
         expect(wrapper.find('li').hasClass("list-group-item-danger")).toBeTruthy();
