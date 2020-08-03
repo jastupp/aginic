@@ -1,5 +1,4 @@
 import State from "../../components/results/State";
-//const baseUrl = process.env.API_URL + "test-results";
 
 const baseUrl = "/test";
 
