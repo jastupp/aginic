@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MYSQL_HOST=localhost MYSQL_USERNAME=aginic MYSQL_PASSWORD=JustTmp_Aginic1 MYSQL_DATABASE=aginic \
+LISTEN_PORT=3002 npm start

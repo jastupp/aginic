@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { addTest, getTests } = require('./api/ServerTestAPI');
+const { LISTEN_PORT } = require('./env');
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +17,7 @@ app.post('/test', async (req, res) => {
     res.sendStatus(result.insertId > 0 ? 201 : 403);
 });
 
-
-app.listen(3001, () => {
-    console.log('Listening on port 3001');
+const PORT = LISTEN_PORT() || 3001;
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 });

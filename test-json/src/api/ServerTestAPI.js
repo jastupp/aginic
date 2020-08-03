@@ -1,19 +1,29 @@
 const { pool } = require('../mysql/MySQLConnect');
+const Query = require('../mysql/Query');
 
+/**
+ * Add a test object into the database
+ *
+ * @param data
+ * @returns {Promise<>}
+ */
 const addTest = async (data) => {
-    const QUERY = 'INSERT INTO ServerTasks SET ?';
     return await new Promise((resolve, reject) => {
-        pool.query(QUERY, data, (error, data) => {
+        pool.query(Query.ADD_TEST, data, (error, data) => {
             error && reject(error);
             error || resolve(data)
         });
     });
 }
 
+/**
+ * Gets the tests from the database
+ *
+ * @returns {Promise<>}
+ */
 const getTests = async () => {
-    const QUERY = 'SELECT URL, state from ServerTasks order by id desc'
     return await new Promise((resolve, reject) => {
-        pool.query(QUERY, (error, data) => {
+        pool.query(Query.GET_TESTS, (error, data) => {
             error && reject(error)
             error || resolve(JSON.parse(JSON.stringify(data)));
         });

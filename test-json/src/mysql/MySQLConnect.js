@@ -1,11 +1,13 @@
 const mysql = require('mysql');
+const { MYSQL_HOST, MYSQL_USERNAME,
+        MYSQL_PASSWORD, MYSQL_DATABASE } = require('../env');
 
 const pool = mysql.createPool({
     connectionLimit : 5,
-    host     : 'localhost',
-    user     : 'aginic',
-    password : 'JustTmp_Aginic1',
-    database : 'aginic'
+    host     : MYSQL_HOST(),
+    user     : MYSQL_USERNAME(),
+    password : MYSQL_PASSWORD(),
+    database : MYSQL_DATABASE()
 });
 
 module.exports = {
